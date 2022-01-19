@@ -90,6 +90,11 @@ namespace DBook.Areas.Identity.Pages.Account
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
+                if (result.IsNotAllowed)
+                {
+                    ModelState.AddModelError(string.Empty, "You cannot sign in without a confirmed account.");
+                    return Page();
+                }
                 if (result.RequiresTwoFactor)
                 {
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
