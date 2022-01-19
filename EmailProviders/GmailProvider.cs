@@ -17,7 +17,7 @@ namespace DBook.EmailProviders
 
             log = logger;
         }
-        public async Task Send(string sender, string receiver, string content)
+        public async Task Send(string receiver, string content, string sender = "")
         {
             using (smtp = new SmtpClient())
             {
@@ -54,7 +54,7 @@ namespace DBook.EmailProviders
                     return;
                 }
 
-                await smtp.AuthenticateAsync(sender, "pass");
+                await smtp.AuthenticateAsync(sender, "");
 
                 if (!smtp.IsAuthenticated)
                 {
