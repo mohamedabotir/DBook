@@ -32,6 +32,7 @@ namespace DBook
             services.AddControllersWithViews();
 
             services.AddScoped<GmailProvider>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
