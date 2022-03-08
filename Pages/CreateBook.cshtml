@@ -1,0 +1,35 @@
+﻿@page
+@model DBook.Pages.CreateBookModel
+@{
+}
+
+@if (@ViewData["success"].Equals(true))
+{
+    <div class="alert alert-success" role="alert">
+       Published Successfully
+    </div>
+}
+<form method="post">
+
+    <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+    <div class="mb-3">
+        <label for="BookName" class="form-label">Book Name</label>
+        <input type="text" class="form-control" id="BookName" asp-for="Model.BookName">
+        <span asp-validation-for="Model.BookName" class="text-danger"></span> 
+        </div>
+    <div class="mb-3">
+    <label for="Author" class="form-label">Author Name</label>
+        <input type="text" class="form-control" id="Author" asp-for="Model.Author">
+        <span asp-validation-for="Model.Author" class="text-danger"></span> 
+        </div>
+ <div class="mb-3">
+    <label for="Image" class="form-label">Image Url</label>
+        <input type="text" class="form-control" id="Image" asp-for="Model.ImageUrl">
+    </div>
+<div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Book Description</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+    <input type="submit" value="submit" class="btn btn-success"/>
+   
+</form>

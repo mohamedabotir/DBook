@@ -29,8 +29,17 @@ namespace DBook.Data.Migrations
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("BookName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PublisherId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("PublisherName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
