@@ -1,5 +1,5 @@
 ﻿@page
-@model DBook.Pages.CreateBookModel
+@model DBook.Pages.Book.CreateBookModel
 @{
 }
 
@@ -20,16 +20,17 @@
     <div class="mb-3">
     <label for="Author" class="form-label">Author Name</label>
         <input type="text" class="form-control" id="Author" asp-for="Model.Author">
-        <span asp-validation-for="Model.Author" class="text-danger"></span> 
+        <span asp-validation-for="Model.Author " class="text-danger"></span> 
         </div>
  <div class="mb-3">
     <label for="Image" class="form-label">Image Url</label>
         <input type="text" class="form-control" id="Image" asp-for="Model.ImageUrl">
     </div>
-<div class="mb-3">
-    <label for="exampleFormControlTextarea1" class="form-label">Book Description</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-</div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Book Description</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+      
     <input type="submit" value="submit" class="btn btn-success"/>
-   
+    
 </form>

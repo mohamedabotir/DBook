@@ -143,3 +143,5 @@ D:\IT\DBook\obj\Debug\net6.0\refint\DBook.dll
 D:\IT\DBook\obj\Debug\net6.0\DBook.pdb
 D:\IT\DBook\obj\Debug\net6.0\DBook.genruntimeconfig.cache
 D:\IT\DBook\obj\Debug\net6.0\ref\DBook.dll
+D:\IT\DBook\bin\Debug\net6.0\AutoMapper.dll
+D:\IT\DBook\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

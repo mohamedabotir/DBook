@@ -1,3 +1,4 @@
+using System.Reflection;
 using DBook.Data;
 using DBook.EmailProviders;
 using Microsoft.AspNetCore.Builder;
@@ -30,8 +31,8 @@ namespace DBook
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
-            services.AddRazorPages();
-
+            services.AddRazorPages().AddRazorPagesOptions(options=>options.Conventions.AddPageRoute("/book/books",""));
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<GmailProvider>();
 
         }
@@ -41,6 +42,7 @@ namespace DBook
         {
             if (env.IsDevelopment())
             {
+                
                 app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
             }
@@ -52,7 +54,7 @@ namespace DBook
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            
             app.UseRouting();
 
             app.UseAuthentication();

@@ -1,0 +1,33 @@
+﻿@page
+ 
+@model DBook.Pages.Book.EditBookModel
+@{
+}
+
+<form method="post">
+    @Html.Hidden("Book.Id")
+    @Html.Hidden("Book.PublisherId")
+    @Html.Hidden("Book.PublisherName")
+    <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+    <div class="mb-3">
+        <label for="BookName" class="form-label">Book Name</label>
+        <input type="text" class="form-control" id="BookName" asp-for="Book.BookName">
+        <span asp-validation-for="Book.BookName" class="text-danger"></span> 
+    </div>
+    <div class="mb-3">
+        <label for="Author" class="form-label">Author Name</label>
+        <input type="text" class="form-control" id="Author" asp-for="Book.Author">
+        <span asp-validation-for="Book.Author " class="text-danger"></span> 
+    </div>
+    <div class="mb-3">
+        <label for="Image" class="form-label">Image Url</label>
+        <input type="text" class="form-control" id="Image" asp-for="Book.ImageUrl">
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Book Description</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+      
+    <input type="submit" value="submit" class="btn btn-success"/>
+    
+</form>

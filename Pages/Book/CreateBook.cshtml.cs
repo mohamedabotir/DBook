@@ -1,13 +1,12 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 using DBook.Data;
-using DBook.Data.Entity;
 using DBook.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace DBook.Pages
+namespace DBook.Pages.Book
 {
     [Authorize]
     public class CreateBookModel : PageModel
@@ -26,7 +25,7 @@ namespace DBook.Pages
         }
         [BindProperty]
         public BookModel Model { set; get; }
-        [AutoValidateAntiforgeryToken]
+         
         public async Task<IActionResult> OnPostAsync()
         {
             var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -36,7 +35,7 @@ namespace DBook.Pages
                 return Page();
             }
 
-            var book = new Book
+            var book = new Data.Entity.Book
             {
                 Author = Model.Author,
                 PublisherName = User.Identity?.Name,

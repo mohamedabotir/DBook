@@ -1,0 +1,35 @@
+﻿@page
+@model DBook.Pages.Book.BooksModel
+@{
+}
+<div class="container">
+    <div class="row">
+        @if (Model.Books == null)
+        {
+
+        }
+
+        else
+        {
+
+       
+        @foreach (var item in Model?.Books)
+        {
+            <div class="col-md-4 col-book">
+                <img src="@item.ImageUrl"/>
+                <h1>@item.BookName</h1> by
+                <span>@item.Author</span>
+                <p>@item.PublisherName</p>
+                <div><a href="#">moreInfo</a></div>
+                <button class="btn btn-info">Request</button>
+                <form method="post">
+                    <input type="submit" class="btn btn-danger" value="Delete" asp-route-id="@item.Id" asp-page-handler="Delete"/>
+                </form>
+                <a asp-page="/book/editBook" asp-route-id="@item.Id"> <input type="button" class="btn btn-dark" value="Edit"/></a>
+            </div>
+
+        }
+        }
+    </div>
+
+</div>

@@ -80,3 +80,11 @@ body {
     background-color: #ff304f;
     color:white;
 }
+.col-book {
+    margin-bottom: 1%; 
+}
+.col-book >img {
+    width: 225px;
+    height: 225px;
+           
+}
