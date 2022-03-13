@@ -1,7 +1,20 @@
 ﻿@page
+@using DBook.Pages.Book
+@using DBook.Services
 @model DBook.Pages.Book.BooksModel
 @{
 }
+@if (@ViewData["success"]!.Equals(true))
+{
+    <div class="alert alert-success" role="alert">
+        Deleted Successfully!
+    </div>
+}@if (@ViewData["success"]!.Equals(false))
+ {
+     <div class="alert alert-success" role="alert">
+         Failed to Delete!
+     </div>
+ }
 <div class="container">
     <div class="row">
         @if (Model.Books == null)
@@ -21,12 +34,23 @@
                 <span>@item.Author</span>
                 <p>@item.PublisherName</p>
                 <div><a href="#">moreInfo</a></div>
-                <button class="btn btn-info">Request</button>
-                <form method="post">
-                    <input type="submit" class="btn btn-danger" value="Delete" asp-route-id="@item.Id" asp-page-handler="Delete"/>
-                </form>
-                <a asp-page="/book/editBook" asp-route-id="@item.Id"> <input type="button" class="btn btn-dark" value="Edit"/></a>
-            </div>
+                @if (User.GetUserId()!=null)
+                {
+                    <form method="post">
+                        <input type="submit" class="btn btn-danger" value="Request" asp-route-id="@item" asp-page-handler="Request"/>
+                    </form>
+                }
+                @if (Model.books.Contains(User.GetUserId()) && item.PublisherId == User.GetUserId())
+                {
+                    <form method="post">
+                        <input type="submit" class="btn btn-danger" value="Delete" asp-route-id="@item.Id" asp-page-handler="Delete"/>
+                    </form>
+                }
+               @if (Model.books.Contains(User.GetUserId()) && item.PublisherId == User.GetUserId())
+               {
+                   <a asp-page="/book/editBook" asp-route-id="@item.Id"> <input type="button" class="btn btn-dark" value="Edit"/></a>
+               }
+                </div>
 
         }
         }

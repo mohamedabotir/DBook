@@ -1,5 +1,6 @@
 using System.Reflection;
 using DBook.Data;
+using DBook.Data.Entity;
 using DBook.EmailProviders;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 
 namespace DBook
 {
@@ -28,10 +30,16 @@ namespace DBook
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<User,IdentityRole>(options =>
+                {
+                    options.SignIn.RequireConfirmedAccount = true;
+                    options.User.RequireUniqueEmail = true;
+                })
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddControllersWithViews();
-            services.AddRazorPages().AddRazorPagesOptions(options=>options.Conventions.AddPageRoute("/book/books",""));
+           
+            services.AddRazorPages()
+                .AddRazorPagesOptions(options=>options.Conventions.AddPageRoute("/book/books",""))
+                .AddNewtonsoftJson(o=>o.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddScoped<GmailProvider>();
 
@@ -62,9 +70,7 @@ namespace DBook
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                
                 endpoints.MapRazorPages();
             });
         }

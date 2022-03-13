@@ -145,3 +145,6 @@ D:\IT\DBook\obj\Debug\net6.0\DBook.genruntimeconfig.cache
 D:\IT\DBook\obj\Debug\net6.0\ref\DBook.dll
 D:\IT\DBook\bin\Debug\net6.0\AutoMapper.dll
 D:\IT\DBook\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\IT\DBook\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\IT\DBook\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+D:\IT\DBook\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
