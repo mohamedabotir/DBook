@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using DBook.Data;
+using DBook.Data.Entity;
 using DBook.Models;
 using DBook.Services;
 using Microsoft.AspNetCore.Http;
@@ -57,9 +59,26 @@ namespace DBook.Pages.Book
             return RedirectToPage("/Book/books");
         }
 
-        public async Task<IActionResult> OnRequestAsync(BookModel model)
+        public IActionResult OnPostRequest(int id)
         {
-            return Page();
+            ViewData["success"] = "no";
+            var userId = User.GetUserId();
+            var book = _ctx.Books.FirstOrDefault(x=>x.Id == id);
+            if (book == null || userId==null)
+            {
+                return RedirectToPage("/Book/Books");
+            }
+
+            var request = new Request
+            {
+                OwnerUserId = book.PublisherId,
+                BookId = id,
+                RequireUserId = userId,
+                RequestDateTime = DateTime.Now
+            };
+            _ctx.Requests.Add(request);
+            _ctx.SaveChanges();
+            return RedirectToPage("/Book/Books");
         }
 
     }

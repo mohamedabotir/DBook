@@ -37,7 +37,7 @@
                 @if (User.GetUserId()!=null)
                 {
                     <form method="post">
-                        <input type="submit" class="btn btn-danger" value="Request" asp-route-id="@item" asp-page-handler="Request"/>
+                        <input type="submit" class="btn btn-danger" value="Request" asp-route-id="@item.Id" asp-page-handler="Request"/>
                     </form>
                 }
                 @if (Model.books.Contains(User.GetUserId()) && item.PublisherId == User.GetUserId())

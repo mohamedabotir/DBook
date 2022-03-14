@@ -9,7 +9,7 @@ namespace DBook.Data
     {
         public string Favor { get; set; }
         public DbSet<Book> Books { get; set; }
-      //  public DbSet<Request> Requests { set; get; }
+        public DbSet<Request> Requests { set; get; }
        
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -18,9 +18,9 @@ namespace DBook.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //builder.Entity<Request>().HasOne<User>(u => u.OwnerUser)
-            //    .WithMany(e => e.Requests).HasForeignKey(e => e.OwnerUserId).OnDelete(DeleteBehavior.Restrict);
-            base.OnModelCreating(builder);
+            builder.Entity<Request>().HasOne<User>(u => u.OwnerUser)
+                .WithMany(e => e.Requests).HasForeignKey(e => e.OwnerUserId).OnDelete(DeleteBehavior.Restrict);
+             base.OnModelCreating(builder);
         }
     }
 }
